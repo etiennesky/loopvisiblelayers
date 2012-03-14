@@ -30,11 +30,14 @@ UI_FILES = ui_loopvisiblelayersdock.py
 
 RESOURCE_FILES = resources_rc.py
 
-ifeq ($(strip $(VERSION)),)
-	VERSION=HEAD
+ifeq ($(strip $(GIT_VERSION)),)
+	GIT_VERSION=HEAD
 endif
 
+PLUGINVER1=$(shell grep version= metadata.txt)
+PLUGINVER=$(shell expr substr $(PLUGINVER1) 9 20)
 
+#default: getvars compile
 default: compile
 
 clean:
@@ -44,6 +47,12 @@ clean:
 
 #compile:  copy_resource $(UI_FILES) $(RESOURCE_FILES)
 compile:  $(UI_FILES) $(RESOURCE_FILES)
+
+#getvars:
+#	@PLUGINVER := `grep "version=" metadata.txt`
+#	@grep version= metadata.txt
+#	@echo $(PLUGINVER1)
+#	@echo $(PLUGINVER)
 
 #copy_resource:
 #	cp -f resources.qrc resources_rc.qrc
@@ -72,6 +81,6 @@ deploy: compile
 # To use, pass a valid commit or tag as follows:
 #   make package VERSION=Version_0.3.2
 package: compile
-		rm -f $(PLUGINNAME).zip
-		git archive --prefix=$(PLUGINNAME)/ -o $(PLUGINNAME).zip $(VERSION)
-		echo "Created package: $(PLUGINNAME).zip"
+		rm -f $(PLUGINNAME)-$(PLUGINVER).zip
+		git archive --prefix=$(PLUGINNAME)/ -o $(PLUGINNAME)-$(PLUGINVER).zip $(GIT_VERSION)
+		echo "Created package: $(PLUGINNAME)-$(PLUGINVER).zip"
