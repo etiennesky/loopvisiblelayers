@@ -23,7 +23,7 @@ PLUGINNAME = loopvisiblelayers
 
 PY_FILES = loopvisiblelayers.py loopvisiblelayersdock.py __init__.py
 
-EXTRAS = icon.png icons/* metadata.txt
+EXTRAS = icon.png icons/* metadata.txt README
 
 #UI_FILES = ui_loopvisiblelayers.py ui_loopvisiblelayersdock.py
 UI_FILES = ui_loopvisiblelayersdock.py
@@ -32,13 +32,21 @@ RESOURCE_FILES = resources_rc.py
 
 default: compile
 
-compile:  copy_resource $(UI_FILES) $(RESOURCE_FILES)
+clean:
+	rm -f *.pyc
+	rm -f ui_*.py*
+	rm -f resources_rc.py
 
-copy_resource:
-	cp -f resources.qrc resources_rc.qrc
+#compile:  copy_resource $(UI_FILES) $(RESOURCE_FILES)
+compile:  $(UI_FILES) $(RESOURCE_FILES)
 
-%.py : %.qrc
-	pyrcc4 -o $@  $<
+#copy_resource:
+#	cp -f resources.qrc resources_rc.qrc
+
+#%.py : %.qrc
+#	pyrcc4 -o $@  $<
+resources_rc.py : resources.qrc
+	pyrcc4 -o resources_rc.py resources.qrc
 
 %.py : %.ui
 	pyuic4 -o $@ $<

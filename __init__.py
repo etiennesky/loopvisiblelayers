@@ -24,7 +24,7 @@ def name():
 def description():
     return "Loop Visible Layers"
 def version():
-    return "Version 0.1.1"
+    return "Version 0.1.2"
 def icon():
     return "icon.png"
 def qgisMinimumVersion():

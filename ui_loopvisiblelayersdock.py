@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_loopvisiblelayersdock.ui'
 #
-# Created: Tue Mar 13 20:44:01 2012
+# Created: Wed Mar 14 17:01:45 2012
 #      by: PyQt4 UI code generator 4.8.5
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,7 +35,7 @@ class Ui_LoopVisibleLayersDock(object):
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 3, 0, 1, 1)
         self.label_3 = QtGui.QLabel(self.dockWidgetContents)
-        self.label_3.setText(QtGui.QApplication.translate("LoopVisibleLayersDock", "Actions", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("LoopVisibleLayersDock", "Controls", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridLayout.addWidget(self.label_3, 5, 0, 1, 1)
         self.horizontalLayout = QtGui.QHBoxLayout()

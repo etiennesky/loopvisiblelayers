@@ -1,0 +1,37 @@
+============================================================
+README
+
+This plugin allows for layers or groups to be displayed in a loop.
+
+The plugin interface is a small dock widget which should appear in the left dock when the plugin is activated.
+
+The "Select Group" selection allows to define the source for the layers to loop.
+Select <Visible Layers> to select visible layers (the ones checked in the Layers legend).
+Select <Root> to use the top-level items (layers or groups) in the Layers legend.
+If there are any groups in the layers legend, these should appear in the selector.
+Currently the selector is not refreshed automatically, so use the Refresh button when needed. 
+
+Select the loop delay in seconds.
+
+The Controls are Play/Pause, Stop, Next.
+
+
+============================================================
+TODO
+
+- fix groups - cannot have identical names and nested groups are added to groups/layers to loop unnecessarily
+- add one-shot timers instead of programmed one
+- update the groups list (and internal representations) automatically
+
+
+============================================================
+CREDITS
+- icons are from Fatcow "Farm-Fresh Web Icons" CC3 licence (http://creativecommons.org/licenses/by/3.0/us/)
+- refresh button from qgis
+
+
+============================================================
+CHANGELOG
+0.1    initial release
+0.1.1  add missing files
+0.1.2  fix resources.py vs. resources_rc.py in Makefile ; added README
