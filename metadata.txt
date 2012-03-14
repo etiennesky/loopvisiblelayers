@@ -11,7 +11,7 @@
 [general]
 name=Loop Visible Layers
 qgisMinimumVersion=1.7
-description=Loop Visible Layers
+description=Allows for layers or groups to be displayed in a loop
 version=0.1
 
 # end of mandatory metadata
