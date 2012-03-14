@@ -20,9 +20,9 @@
  This script initializes the plugin, making it known to QGIS.
 """
 def name():
-    return "Loop Visible Layers Plugin"
+    return "Loop Visible Layers"
 def description():
-    return "Loop Visible Layers Plugin"
+    return "Loop Visible Layers"
 def version():
     return "Version 0.1"
 def icon():

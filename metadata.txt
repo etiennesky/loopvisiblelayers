@@ -9,9 +9,9 @@
 
 
 [general]
-name=Loop Visible Layers Plugin
+name=Loop Visible Layers
 qgisMinimumVersion=1.7
-description=Loop Visible Layers Pluging
+description=Loop Visible Layers
 version=0.1
 
 # end of mandatory metadata
@@ -24,9 +24,9 @@ version=0.1
 # tags are comma separated with spaces allowed
 tags=loop
 
-homepage=home
+homepage=https://github.com/etiennesky/loopvisiblelayers
 tracker=bug
-repository=repos
+repository=https://github.com/etiennesky/loopvisiblelayers.git
 icon=icon.png
 # experimental flag
 experimental=True

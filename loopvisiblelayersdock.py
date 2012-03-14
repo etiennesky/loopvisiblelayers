@@ -27,8 +27,6 @@ from PyQt4.QtGui import QIcon, QPixmap
 from qgis.core import *
 from qgis.gui import *
 
-import pprint
-
 from ui_loopvisiblelayersdock import Ui_LoopVisibleLayersDock
 
 try:
@@ -118,8 +116,6 @@ class LoopVisibleLayersDock(QtGui.QDockWidget):
         selGroupIndex = self.ui.cbxGroup.currentIndex()
         selGroupName = self.ui.cbxGroup.currentText()
 
-        pp = pprint.PrettyPrinter()
-
  #       print('start, delay='+str(self.getTimerDelay( ))+' current= '+str(selGroupIndex))
  #       print('size(cbxGroup)='+str(self.ui.cbxGroup.count())+' size(groups)='+str(self.groups.count()))
         #print('group: '+ self.groups[selGroupIndex])
@@ -167,7 +163,6 @@ class LoopVisibleLayersDock(QtGui.QDockWidget):
         self.timer.start( self.getTimerDelay() * 1000 );
 
     def actionNext(self):
-        print('actionNext(), count='+str(self.count))
 
         ifaceLegend = self.iface.legendInterface()
         ifaceLayers = QgsMapLayerRegistry.instance().mapLayers()
@@ -181,11 +176,11 @@ class LoopVisibleLayersDock(QtGui.QDockWidget):
         self.allLayerIds = list()
         for key in ifaceLayers.keys():
             self.allLayerIds.append(str(key) )
-        print(str('layers: '+str(self.allLayerIds)))
+#        print(str('layers: '+str(self.allLayerIds)))
         self.allGroupIds = list()
         for key in self.groups:
             self.allGroupIds.append( str(key) )
-        print(str('groups: '+str(self.allGroupIds)))
+#        print(str('groups: '+str(self.allGroupIds)))
         
         # show all items in self.selLayerId
         for layerId in self.selLayerId:
