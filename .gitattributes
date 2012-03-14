@@ -1,2 +1,3 @@
-loopvisiblelayers/loopvisiblelayers.zip export-ignore
-
+/loopvisiblelayers.zip export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore

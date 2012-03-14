@@ -30,6 +30,11 @@ UI_FILES = ui_loopvisiblelayersdock.py
 
 RESOURCE_FILES = resources_rc.py
 
+ifeq ($(strip $(VERSION)),)
+	VERSION=HEAD
+endif
+
+
 default: compile
 
 clean:
