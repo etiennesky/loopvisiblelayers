@@ -12,7 +12,7 @@
 name=Loop Visible Layers
 qgisMinimumVersion=1.7
 description=Allows for layers or groups to be displayed in a loop
-version=0.1
+version=0.1.1
 
 # end of mandatory metadata
 
@@ -44,6 +44,7 @@ email=etourigny.dev@gmail.com
 # - fix groups - cannot have identical names and nested groups are added to groups/layers to loop unnecessarily
 # - add one-shot timers instead of programmed one
 # - update the groups list (and internal representations) automatically
+# - fix resources.py vs resources_rc.py (designer add a reference to resources_rc.py even though the file is resources.qrc)
 
 # CREDITS
 # icons are from qgis (refresh button) and 
