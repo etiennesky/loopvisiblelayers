@@ -1,7 +1,7 @@
 ============================================================
 README
 
-This plugin allows for layers or groups to be displayed in a loop.
+This QGis plugin allows for layers or groups to be displayed in a loop.
 
 The plugin interface is a small dock widget which should appear in the left dock when the plugin is activated.
 
@@ -34,4 +34,4 @@ CREDITS
 CHANGELOG
 0.1    initial release
 0.1.1  add missing files
-0.1.2  fix resources.py vs. resources_rc.py in Makefile ; added README
+0.1.2  added README ; Makefile fixes
