@@ -1,0 +1,35 @@
+#####################################
+code for dialog widget
+
+#        self.canvas = canvas
+
+        # connect the action to the run method
+#        QObject.connect(self.action, SIGNAL("triggered()"), self.run)
+
+        # Add toolbar button and menu item
+#        self.iface.addToolBarIcon(self.action)
+#        self.iface.addPluginToMenu("&Loop Visible Layers", self.action)
+
+
+#        self.iface.removePluginMenu("&Loop Visible Layers",self.action)
+#        self.iface.removeToolBarIcon(self.action)
+
+    # run method that performs all the real work
+    #def run(self):
+
+        # create and show the dialog
+#        dlg = LoopVisibleLayersDialog(self.iface)
+#        dlg = LoopVisibleLayersDialog(self.iface.mainWindow(), self.iface)
+        #dlg = LoopVisibleLayersDock(self.iface.mainWindow(), self.iface)
+        #self.iface.addDockWidget(Qt.RightDockWidgetArea, dlg)
+        # show the dialog
+        #dlg.show()
+        #result = dlg.exec_()
+        # See if OK was pressed
+        #if result == 1:
+            # do something useful (delete the line containing pass and
+            # substitute with your code
+        #    pass
+        
+
+

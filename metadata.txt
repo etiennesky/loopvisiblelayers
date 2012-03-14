@@ -1,0 +1,50 @@
+# This file contains metadata for your plugin. Beginning
+# with version 1.8 this is the preferred way to supply information about a
+# plugin. The current method of embedding metadata in __init__.py will
+# be supported until version 2.0
+
+# This file should be included when you package your plugin.
+
+# Mandatory items:
+
+
+[general]
+name=Loop Visible Layers Plugin
+qgisMinimumVersion=1.7
+description=Loop Visible Layers Pluging
+version=0.1
+
+# end of mandatory metadata
+
+# Optional items:
+
+# Uncomment the following line and add your changelog entries:
+# changelog=
+
+# tags are comma separated with spaces allowed
+tags=loop
+
+homepage=home
+tracker=bug
+repository=repos
+icon=icon.png
+# experimental flag
+experimental=True
+
+# deprecated flag (applies to the whole plugin, not just a single version
+deprecated=False
+
+# Author contact information
+author=Etienne Tourigny
+email=etourigny.dev@gmail.com
+
+
+
+# TODO
+# - fix groups - cannot have identical names and nested groups are added to groups/layers to loop unnecessarily
+# - add one-shot timers instead of programmed one
+# - update the groups list (and internal representations) automatically
+
+# CREDITS
+# icons are from qgis (refresh button) and 
+# Fatcow "Farm-Fresh Web Icons" CC3 licence (http://creativecommons.org/licenses/by/3.0/us/)
