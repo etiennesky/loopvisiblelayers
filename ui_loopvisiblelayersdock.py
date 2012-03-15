@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_loopvisiblelayersdock.ui'
 #
-# Created: Wed Mar 14 17:01:45 2012
+# Created: Thu Mar 15 00:03:07 2012
 #      by: PyQt4 UI code generator 4.8.5
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_LoopVisibleLayersDock(object):
     def setupUi(self, LoopVisibleLayersDock):
         LoopVisibleLayersDock.setObjectName(_fromUtf8("LoopVisibleLayersDock"))
-        LoopVisibleLayersDock.resize(305, 173)
+        LoopVisibleLayersDock.resize(317, 185)
         LoopVisibleLayersDock.setWindowTitle(QtGui.QApplication.translate("LoopVisibleLayersDock", "Loop Visible Layers", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidgetContents = QtGui.QWidget()
         self.dockWidgetContents.setObjectName(_fromUtf8("dockWidgetContents"))
@@ -26,18 +26,18 @@ class Ui_LoopVisibleLayersDock(object):
         self.label = QtGui.QLabel(self.dockWidgetContents)
         self.label.setText(QtGui.QApplication.translate("LoopVisibleLayersDock", "Select Group", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.cbxGroup = QtGui.QComboBox(self.dockWidgetContents)
         self.cbxGroup.setObjectName(_fromUtf8("cbxGroup"))
-        self.gridLayout.addWidget(self.cbxGroup, 2, 2, 1, 1)
+        self.gridLayout.addWidget(self.cbxGroup, 0, 2, 1, 1)
         self.label_2 = QtGui.QLabel(self.dockWidgetContents)
         self.label_2.setText(QtGui.QApplication.translate("LoopVisibleLayersDock", "Loop Delay (sec.)", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.gridLayout.addWidget(self.label_2, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.label_3 = QtGui.QLabel(self.dockWidgetContents)
         self.label_3.setText(QtGui.QApplication.translate("LoopVisibleLayersDock", "Controls", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.gridLayout.addWidget(self.label_3, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.btnStart = QtGui.QPushButton(self.dockWidgetContents)
@@ -65,13 +65,7 @@ class Ui_LoopVisibleLayersDock(object):
         self.btnNext.setIcon(icon2)
         self.btnNext.setObjectName(_fromUtf8("btnNext"))
         self.horizontalLayout.addWidget(self.btnNext)
-        self.gridLayout.addLayout(self.horizontalLayout, 5, 2, 1, 1)
-        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 1, 2, 1, 1)
-        spacerItem1 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem1, 6, 2, 1, 1)
-        spacerItem2 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem2, 0, 2, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout, 3, 2, 1, 1)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.spinDelay = QtGui.QDoubleSpinBox(self.dockWidgetContents)
@@ -79,8 +73,8 @@ class Ui_LoopVisibleLayersDock(object):
         self.spinDelay.setMinimum(0.1)
         self.spinDelay.setObjectName(_fromUtf8("spinDelay"))
         self.horizontalLayout_2.addWidget(self.spinDelay)
-        spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem3)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem)
         self.btnRefresh = QtGui.QPushButton(self.dockWidgetContents)
         self.btnRefresh.setToolTip(QtGui.QApplication.translate("LoopVisibleLayersDock", "Refresh Groups", None, QtGui.QApplication.UnicodeUTF8))
         self.btnRefresh.setText(_fromUtf8(""))
@@ -89,7 +83,18 @@ class Ui_LoopVisibleLayersDock(object):
         self.btnRefresh.setIcon(icon3)
         self.btnRefresh.setObjectName(_fromUtf8("btnRefresh"))
         self.horizontalLayout_2.addWidget(self.btnRefresh)
-        self.gridLayout.addLayout(self.horizontalLayout_2, 3, 2, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout_2, 1, 2, 1, 1)
+        self.lblStatus = QtGui.QLabel(self.dockWidgetContents)
+        self.lblStatus.setEnabled(True)
+        self.lblStatus.setText(_fromUtf8(""))
+        self.lblStatus.setObjectName(_fromUtf8("lblStatus"))
+        self.gridLayout.addWidget(self.lblStatus, 4, 0, 1, 3)
+        spacerItem1 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem1, 5, 2, 1, 1)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem2, 1, 3, 1, 1)
+        spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 1, 1, 1, 1)
         LoopVisibleLayersDock.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(LoopVisibleLayersDock)

@@ -19,10 +19,19 @@ The Controls are Play/Pause, Stop, Next.
 ============================================================
 TODO
 
-- fix groups - cannot have identical names and nested groups are added to groups/layers to loop unnecessarily
-- add one-shot timers instead of programmed one
-- update the groups list (and internal representations) automatically
+- fix nested group handling - nested groups are added to loop list unnecessarily
+- use one-shot timers instead of programmed one
+- create rendering/canvas cache for each loop, instead of rendering each time 
+  - is this possible with qgis api?
+  - maybe not necessary when layer caching is activated (show warning if not activated)
 
+- update the groups list and relations automatically (patches in my QGis repos. fix this)
+  - get this pulled to qgis
+  - find a way to test for this and print status "groups not updated automatically" if not implemented
+- modify qgis so new groups have unique names (group1,group2,...) - done in my repos.
+
+- check redraw of vector layers when user changes visibility in the layers legend (control rendering order?)
+- check blank page when looping over groups with vector layers
 
 ============================================================
 CREDITS
@@ -35,3 +44,11 @@ CHANGELOG
 0.1    initial release
 0.1.1  add missing files
 0.1.2  added README ; Makefile fixes
+0.2.0  2012/03/15
+       - freeze canvas before changing layer visibility 
+       - add auto-update of groups (reqs. QGis fixes) 
+       - add status bar
+       - keep group selection when updating group selector
+       - check for duplicate group names
+       - update UI stretching behaviour when docked
+       

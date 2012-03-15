@@ -39,13 +39,18 @@ class LoopVisibleLayers:
 
     def initGui(self):
         # Create action that will start plugin configuration
-        self.action = QAction(QIcon(":/plugins/loopvisiblelayers/icon.png"), \
-            "Loop Visible Layers", self.iface.mainWindow())
+        self.action = QAction(QIcon(':/plugins/loopvisiblelayers/icon.png'), \
+            'Loop Visible Layers', self.iface.mainWindow())
 
         # create and show the dock
         self.dockWidget = LoopVisibleLayersDock(self.iface.mainWindow(), self.iface)
         self.restoreDockLocation()
         self.restoreTimerDelay()
+
+        settings = QSettings()
+        if not settings.value('/Qgis/enable_render_caching').toBool():
+            self.dockWidget.setStatus( 'Enable render caching to improve performance' )
+
         self.iface.addDockWidget(self.dockWidget.getLocation(), self.dockWidget)
         # show the dialog
         #dlg.show()
@@ -66,27 +71,27 @@ class LoopVisibleLayers:
 
         if floating:
             nFloating = 1
-            position = "%s %s" % (self.dockWidget.pos().x(), self.dockWidget.pos().y())
+            position = '%s %s' % (self.dockWidget.pos().x(), self.dockWidget.pos().y())
         else:
             nFloating = 0
-            position = u"%s" % self.dockWidget.getLocation()
+            position = u'%s' % self.dockWidget.getLocation()
             
-        settings.setValue( "/plugins/LoopVisibleLayers/floating", floating )
-        settings.setValue( "/plugins/LoopVisibleLayers/position", QString(position) )
-        #size = "%s %s" % (dockwidget.size().width(), dockwidget.size().height())
-        #QgsProject.instance().writeEntry( "DockableMirrorMap", "/mirror%s/size" % i, QString(size) )
+        settings.setValue( '/PythonPlugins/LoopVisibleLayers/floating', floating )
+        settings.setValue( '/PythonPlugins/LoopVisibleLayers/position', QString(position) )
+        #size = '%s %s' % (dockwidget.size().width(), dockwidget.size().height())
+        #QgsProject.instance().writeEntry( 'DockableMirrorMap', '/mirror%s/size' % i, QString(size) )
 
     def restoreDockLocation(self):
         settings = QSettings()
 
-        floating = settings.value("/plugins/LoopVisibleLayers/floating").toBool()
+        floating = settings.value('/PythonPlugins/LoopVisibleLayers/floating').toBool()
         self.dockWidget.setFloating( floating )
         if not floating:
-            position = settings.value( "/plugins/LoopVisibleLayers/position" ).toString()
+            position = settings.value( '/PythonPlugins/LoopVisibleLayers/position' ).toString()
             if position is None or position=='':
                 position = Qt.LeftDockWidgetArea
             else:
-                #position = int(position.split(" ")[0])
+                #position = int(position.split(' ')[0])
                 position = int(position)
             #position = Qt.LeftDockWidgetArea
             self.dockWidget.setLocation( position )
@@ -94,13 +99,13 @@ class LoopVisibleLayers:
     def saveTimerDelay(self):
         timerDelay = self.dockWidget.getTimerDelay()
         settings = QSettings()
-        timerDelayStr = settings.value("/plugins/LoopVisibleLayers/delay")
+        timerDelayStr = settings.value('/PythonPlugins/LoopVisibleLayers/delay')
         if ( timerDelayStr.toFloat()[0] != timerDelay ):
-            settings.setValue( "/plugins/LoopVisibleLayers/delay", timerDelay )
+            settings.setValue( '/PythonPlugins/LoopVisibleLayers/delay', timerDelay )
 
     def restoreTimerDelay(self):
         settings = QSettings()
-        timerDelayStr = settings.value("/plugins/LoopVisibleLayers/delay")
+        timerDelayStr = settings.value('/PythonPlugins/LoopVisibleLayers/delay')
 
         if timerDelayStr is None or timerDelayStr != '':
             timerDelay = timerDelayStr.toFloat()[0]
