@@ -32,16 +32,31 @@ class LoopVisibleLayers:
     def __init__(self, iface):
         # Save reference to the QGIS interface
         self.iface = iface
-        self.groups = QStringList()
-        self.groupsRels = list()
         self.dockWidget = None
-
 
     def initGui(self):
         # Create action that will start plugin configuration
+        print('initGui')
         self.action = QAction(QIcon(':/plugins/loopvisiblelayers/icon.png'), \
             'Loop Visible Layers', self.iface.mainWindow())
+        # connect the action to the run method
+        QObject.connect(self.action, SIGNAL('triggered()'), self.showHideDock)
 
+        # Add toolbar button and menu item
+        self.iface.addToolBarIcon(self.action)
+        #self.iface.addPluginToMenu('Loop Visible Layers', self.action)
+
+        # show dock
+        self.showDock()
+
+    def showHideDock(self):
+        if not self.dockWidget.isVisible():
+            self.showDock()
+        else:
+            self.dockWidget.setVisible( False )
+
+    # run method that performs all the real work
+    def showDock(self):
         # create and show the dock
         self.dockWidget = LoopVisibleLayersDock(self.iface.mainWindow(), self.iface)
         self.restoreDockLocation()
@@ -57,7 +72,10 @@ class LoopVisibleLayers:
 
 
     def unload(self):
-        # Remove the plugin menu item and icon 
+        # Remove the plugin menu item and icon
+        #self.iface.removePluginMenu('Loop Visible Layers',self.action)
+        self.iface.removeToolBarIcon(self.action)
+        #remove the dock
         self.saveTimerDelay()
         self.saveDockLocation()
         self.dockWidget.close()

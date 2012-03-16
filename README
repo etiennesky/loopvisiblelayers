@@ -27,8 +27,8 @@ TODO
 
 - update the groups list and relations automatically (patches in my QGis repos. fix this)
   - get this pulled to qgis
-  - find a way to test for this and print status "groups not updated automatically" if not implemented
 - modify qgis so new groups have unique names (group1,group2,...) - done in my repos.
+- is there a way to add a context menu item to the legend to call this tool?
 
 - check redraw of vector layers when user changes visibility in the layers legend (control rendering order?)
 - check blank page when looping over groups with vector layers
@@ -51,4 +51,11 @@ CHANGELOG
        - keep group selection when updating group selector
        - check for duplicate group names
        - update UI stretching behaviour when docked
-       
+0.3.0  2012/03/16
+       - workaround for lack of signals in legendInterface: update group info on enterEvent()
+       - remove refresh button and alert the user if selection is outdated on play (both are prob. not needed)
+       - fix canvas not redrawn in qgis 1.7.4 after thaw
+       - do not update canvas when main window is inactive or if the dock is hidden
+       - add forward button, which can invert the loop direction
+       - allow delay=0, only use forward and back buttons to show next item
+       - update UI
