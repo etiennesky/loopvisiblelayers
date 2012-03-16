@@ -19,7 +19,6 @@ The Controls are Play/Pause, Stop, Next.
 ============================================================
 TODO
 
-- change config path
 - fix nested group handling - nested groups are added to loop list unnecessarily
 - use one-shot timers instead of programmed one
 - create rendering/canvas cache for each loop, instead of rendering each time 
@@ -60,3 +59,4 @@ CHANGELOG
        - add forward button, which can invert the loop direction
        - allow delay=0, only use forward and back buttons to show next item
        - update UI
+       - change loop widget to a QWidget and nest into an ordinary QDockWidget, remove "save location" stuff

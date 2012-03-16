@@ -83,13 +83,13 @@ class LoopVisibleLayers:
     def saveTimerDelay(self):
         timerDelay = self.loopWidget.getTimerDelay()
         settings = QSettings()
-        timerDelayStr = settings.value('/PythonPlugins/LoopVisibleLayers/delay')
+        timerDelayStr = settings.value('/LoopVisibleLayers/delay')
         if ( timerDelayStr.toFloat()[0] != timerDelay ):
-            settings.setValue( '/PythonPlugins/LoopVisibleLayers/delay', timerDelay )
+            settings.setValue( '/LoopVisibleLayers/delay', timerDelay )
 
     def restoreTimerDelay(self):
         settings = QSettings()
-        timerDelayStr = settings.value('/PythonPlugins/LoopVisibleLayers/delay')
+        timerDelayStr = settings.value('/LoopVisibleLayers/delay')
 
         if timerDelayStr is None or timerDelayStr != '':
             timerDelay = timerDelayStr.toFloat()[0]
