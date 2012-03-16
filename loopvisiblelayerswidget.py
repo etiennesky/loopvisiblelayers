@@ -78,7 +78,6 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
         QObject.connect(self.btnForward, SIGNAL('clicked()'), self.actionForward)
         QObject.connect(self.btnBack, SIGNAL('clicked()'), self.actionBack)
         QObject.connect(self.btnStop, SIGNAL('clicked()'), self.actionStop)
-        QObject.connect(self, SIGNAL('visibilityChanged ( bool )'), self.onVisibilityChanged)
         
         # signals mapped to checkGroupsChanged (btnRefresh, layers changed)
         #QObject.connect( self.btnRefresh, SIGNAL( 'clicked()' ), self.checkGroupsChanged )
@@ -154,7 +153,7 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
             self.checkGroupsChanged()
             QtGui.QMessageBox.warning(self, 'Warning', 'Loop Visible Layers Plugin \n\nSelection has been updated, verify and start again')
             return
- 
+
         # save visible layers
         self.bakLayerIds = list()
         for layer in self.iface.mapCanvas().layers():
