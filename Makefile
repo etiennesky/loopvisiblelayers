@@ -21,12 +21,11 @@
 
 PLUGINNAME = loopvisiblelayers
 
-PY_FILES = loopvisiblelayers.py loopvisiblelayersdock.py __init__.py
+PY_FILES = loopvisiblelayers.py loopvisiblelayerswidget.py __init__.py
 
 EXTRAS = icon.png icons/* metadata.txt README
 
-#UI_FILES = ui_loopvisiblelayers.py ui_loopvisiblelayersdock.py
-UI_FILES = ui_loopvisiblelayersdock.py
+UI_FILES = ui_loopvisiblelayerswidget.py
 
 RESOURCE_FILES = resources_rc.py
 

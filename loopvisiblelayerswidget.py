@@ -25,18 +25,18 @@ from PyQt4.QtGui import QIcon, QPixmap
 from qgis.core import *
 from qgis.gui import *
 
-from ui_loopvisiblelayersdock import Ui_LoopVisibleLayersDock as Ui_Widget
+from ui_loopvisiblelayerswidget import Ui_LoopVisibleLayersWidget as Ui_Widget
 
 try:
     _fromUtf8 = QString.fromUtf8
 except AttributeError:
     _fromUtf8 = lambda s: s
 
-# create the dock
-class LoopVisibleLayersDock(QtGui.QDockWidget, Ui_Widget):
-    def __init__(self, parent, iface):
+# create the widget
+class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
+    def __init__(self, iface):
 
-        QtGui.QDockWidget.__init__(self, parent)
+        QtGui.QWidget.__init__(self)
         # Set up the user interface from Designer.
         self.setupUi(self)
 
@@ -48,7 +48,6 @@ class LoopVisibleLayersDock(QtGui.QDockWidget, Ui_Widget):
         self.groupRels = None
         self.bakLayerIds = None
         self.count = 0
-        self.location = Qt.LeftDockWidgetArea
         self.freeze = True
         self.updateCount = 0
         self.signalsLegendIface = False # are the new legendInterface() signals available?
@@ -74,7 +73,6 @@ class LoopVisibleLayersDock(QtGui.QDockWidget, Ui_Widget):
         self.setStatus( '' ) #invisible by default
 
         # signals/slots
-        QObject.connect(self, SIGNAL('dockLocationChanged(Qt::DockWidgetArea)'), self.setLocation)
         QObject.connect(self, SIGNAL('topLevelChanged(bool)'), self.resizeMin)
         QObject.connect(self.btnStart, SIGNAL('clicked()'), self.actionStartPause)
         QObject.connect(self.btnForward, SIGNAL('clicked()'), self.actionForward)
@@ -97,6 +95,7 @@ class LoopVisibleLayersDock(QtGui.QDockWidget, Ui_Widget):
         QObject.connect( self.iface.legendInterface(), SIGNAL( 'itemRemoved()' ), self.checkGroupsChangedLegendIface )
         QObject.connect( self.iface.legendInterface(), SIGNAL( 'groupRelationsChanged()' ), self.checkGroupsChangedLegendIface )
         QObject.connect( self.iface.mapCanvas(), SIGNAL( 'stateChanged( int )' ), self.checkGroupsChanged )
+        #should we disconnect when unload?
 
         #update groups on init
         self.checkGroupsChanged()
@@ -371,12 +370,6 @@ class LoopVisibleLayersDock(QtGui.QDockWidget, Ui_Widget):
 
     def setTimerDelay(self,timerDelay):
         self.spinDelay.setValue( timerDelay )
-
-    def getLocation(self):
-        return self.location
-
-    def setLocation(self, location):
-        self.location = location
 
     # minimize widget
     def resizeMin(self):

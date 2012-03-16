@@ -25,51 +25,51 @@ from qgis.core import *
 # Initialize Qt resources from file resources.py
 import resources_rc
 # Import the code for the dialog
-from loopvisiblelayersdock import LoopVisibleLayersDock
+from loopvisiblelayerswidget import LoopVisibleLayersWidget
 
 class LoopVisibleLayers:
 
     def __init__(self, iface):
         # Save reference to the QGIS interface
         self.iface = iface
+        self.loopWidget = None
         self.dockWidget = None
 
     def initGui(self):
         # Create action that will start plugin configuration
-        print('initGui')
         self.action = QAction(QIcon(':/plugins/loopvisiblelayers/icon.png'), \
             'Loop Visible Layers', self.iface.mainWindow())
-        # connect the action to the run method
+        # connect the action
         QObject.connect(self.action, SIGNAL('triggered()'), self.showHideDock)
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon(self.action)
         #self.iface.addPluginToMenu('Loop Visible Layers', self.action)
-
-        # show dock
-        self.showDock()
+        
+        # create the loop widget
+        self.loopWidget = LoopVisibleLayersWidget(self.iface)
+        self.restoreTimerDelay()
+        settings = QSettings()
+        if not settings.value('/Qgis/enable_render_caching').toBool():
+            self.loopWidget.setStatus( 'Enable render caching to improve performance' )
+           
+        # create and show the dock
+        self.dockWidget = QDockWidget('Loop Visible Layers', self.iface.mainWindow() )
+        self.dockWidget.setObjectName('Loop Visible Layers')
+        self.dockWidget.setWidget(self.loopWidget)       
+        QObject.connect(self.dockWidget, SIGNAL('topLevelChanged ( bool )'), self.resizeDock)
+        self.iface.addDockWidget(Qt.LeftDockWidgetArea, self.dockWidget)
 
     def showHideDock(self):
         if not self.dockWidget.isVisible():
-            self.showDock()
+            self.dockWidget.setVisible( True )
         else:
             self.dockWidget.setVisible( False )
 
-    # run method that performs all the real work
-    def showDock(self):
-        # create and show the dock
-        self.dockWidget = LoopVisibleLayersDock(self.iface.mainWindow(), self.iface)
-        self.restoreDockLocation()
-        self.restoreTimerDelay()
-
-        settings = QSettings()
-        if not settings.value('/Qgis/enable_render_caching').toBool():
-            self.dockWidget.setStatus( 'Enable render caching to improve performance' )
-
-        self.iface.addDockWidget(self.dockWidget.getLocation(), self.dockWidget)
-        # show the dialog
-        #dlg.show()
-
+    #resize dock to minimum size if it is floating
+    def resizeDock(self, topLevel):
+        if topLevel:
+            self.dockWidget.resize( self.dockWidget.minimumSize() )
 
     def unload(self):
         # Remove the plugin menu item and icon
@@ -77,45 +77,11 @@ class LoopVisibleLayers:
         self.iface.removeToolBarIcon(self.action)
         #remove the dock
         self.saveTimerDelay()
-        self.saveDockLocation()
         self.dockWidget.close()
-        self.dockWidget.actionClose() 
-
-
-    def saveDockLocation(self):
-        settings = QSettings()
-        #code from dockable mirror map
-        floating = self.dockWidget.isFloating()
-
-        if floating:
-            nFloating = 1
-            position = '%s %s' % (self.dockWidget.pos().x(), self.dockWidget.pos().y())
-        else:
-            nFloating = 0
-            position = u'%s' % self.dockWidget.getLocation()
-            
-        settings.setValue( '/PythonPlugins/LoopVisibleLayers/floating', floating )
-        settings.setValue( '/PythonPlugins/LoopVisibleLayers/position', QString(position) )
-        #size = '%s %s' % (dockwidget.size().width(), dockwidget.size().height())
-        #QgsProject.instance().writeEntry( 'DockableMirrorMap', '/mirror%s/size' % i, QString(size) )
-
-    def restoreDockLocation(self):
-        settings = QSettings()
-
-        floating = settings.value('/PythonPlugins/LoopVisibleLayers/floating').toBool()
-        self.dockWidget.setFloating( floating )
-        if not floating:
-            position = settings.value( '/PythonPlugins/LoopVisibleLayers/position' ).toString()
-            if position is None or position=='':
-                position = Qt.LeftDockWidgetArea
-            else:
-                #position = int(position.split(' ')[0])
-                position = int(position)
-            #position = Qt.LeftDockWidgetArea
-            self.dockWidget.setLocation( position )
+        self.loopWidget.actionClose() 
 
     def saveTimerDelay(self):
-        timerDelay = self.dockWidget.getTimerDelay()
+        timerDelay = self.loopWidget.getTimerDelay()
         settings = QSettings()
         timerDelayStr = settings.value('/PythonPlugins/LoopVisibleLayers/delay')
         if ( timerDelayStr.toFloat()[0] != timerDelay ):
@@ -132,4 +98,4 @@ class LoopVisibleLayers:
         if timerDelay <= 0:
             timerDelay = 1.0
 
-        self.dockWidget.setTimerDelay( timerDelay )
+        self.loopWidget.setTimerDelay( timerDelay )
