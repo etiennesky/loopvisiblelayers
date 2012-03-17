@@ -60,3 +60,5 @@ CHANGELOG
        - allow delay=0, only use forward and back buttons to show next item
        - update UI
        - change loop widget to a QWidget and nest into an ordinary QDockWidget, remove "save location" stuff
+0.3.1  2012/03/16
+       - UI tweaks: change buttons to QToolButtons and remove frames, add spacers in all directions
