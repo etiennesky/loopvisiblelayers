@@ -56,9 +56,10 @@ class LoopVisibleLayers:
         # create and show the dock
         self.dockWidget = QDockWidget('Loop Visible Layers', self.iface.mainWindow() )
         self.dockWidget.setObjectName('Loop Visible Layers')
-        self.dockWidget.setWidget(self.loopWidget)       
+        self.dockWidget.setAllowedAreas( Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea )
         QObject.connect(self.dockWidget, SIGNAL('topLevelChanged ( bool )'), self.resizeDock)
         QObject.connect(self.dockWidget, SIGNAL('visibilityChanged ( bool )'), self.loopWidget.onVisibilityChanged)
+        self.dockWidget.setWidget(self.loopWidget)       
         self.iface.addDockWidget(Qt.LeftDockWidgetArea, self.dockWidget)
 
     def showHideDock(self):

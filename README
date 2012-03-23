@@ -24,6 +24,7 @@ TODO
 - create rendering/canvas cache for each loop, instead of rendering each time 
   - is this possible with qgis api?
   - maybe not necessary when layer caching is activated (show warning if not activated)
+- update valuetool values when looping
 
 - update the groups list and relations automatically (patches in my QGis repos. fix this)
   - get this pulled to qgis
