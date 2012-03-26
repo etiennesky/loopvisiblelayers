@@ -62,4 +62,5 @@ CHANGELOG
        - update UI
        - change loop widget to a QWidget and nest into an ordinary QDockWidget, remove "save location" stuff
 0.3.1  2012/03/16
-       - UI tweaks: change buttons to QToolButtons and remove frames, add spacers in all directions
+       - UI tweaks: change buttons to QToolButtons and remove frames, add spacers in all directions, only allow dock in right and left docking areas
+
