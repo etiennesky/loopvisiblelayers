@@ -90,7 +90,7 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
         #QObject.connect( QgsMapLayerRegistry.instance(), SIGNAL( 'layerWillBeRemoved( QString )' ), self.checkGroupsChanged )
         #QObject.connect( QgsMapLayerRegistry.instance(), SIGNAL( 'removedAll()' ), self.checkGroupsChanged )
         #QObject.connect( self.iface.mapCanvas(), SIGNAL( 'layersChanged()' ), self.checkGroupsChanged)
-        QObject.connect( self.iface.legendInterface(), SIGNAL( 'itemAdded( int )' ), self.checkGroupsChangedLegendIface )
+        QObject.connect( self.iface.legendInterface(), SIGNAL( 'itemAdded( QModelIndex )' ), self.checkGroupsChangedLegendIface )
         QObject.connect( self.iface.legendInterface(), SIGNAL( 'itemRemoved()' ), self.checkGroupsChangedLegendIface )
         QObject.connect( self.iface.legendInterface(), SIGNAL( 'groupRelationsChanged()' ), self.checkGroupsChangedLegendIface )
         QObject.connect( self.iface.mapCanvas(), SIGNAL( 'stateChanged( int )' ), self.checkGroupsChanged )
