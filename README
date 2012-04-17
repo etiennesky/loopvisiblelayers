@@ -65,4 +65,5 @@ CHANGELOG
        - UI tweaks: change buttons to QToolButtons and remove frames, 
          add spacers in all directions, 
          only allow dock in right and left docking areas
-
+0.3.2 2012/04.17
+      - fix startup error with Windows / Qgis 1.7.4

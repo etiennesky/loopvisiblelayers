@@ -405,7 +405,7 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
         # workaround, if signalsLegendIface=False, check groups changed
         if not self.signalsLegendIface:
             self.checkGroupsChanged()
-        QtGui.QDockWidget.enterEvent(self, event)
+        QtGui.QWidget.enterEvent(self, event)
 
     def sizeHint(self):
         return self.minimumSize()

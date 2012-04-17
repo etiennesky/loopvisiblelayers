@@ -12,24 +12,24 @@
 name=Loop Visible Layers
 qgisMinimumVersion=1.7
 description=Allows for layers or groups to be displayed in a loop
-version=0.3.1
+version=0.3.2
 
 # end of mandatory metadata
 
 # Optional items:
 
 # Uncomment the following line and add your changelog entries:
-#changelog=
+changelog=fix startup error with Windows / Qgis 1.7.4
 
 # tags are comma separated with spaces allowed
 tags=loop
 
 homepage=https://github.com/etiennesky/loopvisiblelayers
-tracker=bug
+tracker=http://hub.qgis.org/projects/loopvisiblelayers/issues
 repository=https://github.com/etiennesky/loopvisiblelayers.git
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version
 deprecated=False
