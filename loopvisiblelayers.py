@@ -79,6 +79,7 @@ class LoopVisibleLayers:
         self.iface.removeToolBarIcon(self.action)
         #remove the dock
         self.saveTimerDelay()
+        self.iface.removeDockWidget(self.dockWidget)
         self.dockWidget.close()
         self.loopWidget.actionClose() 
 
