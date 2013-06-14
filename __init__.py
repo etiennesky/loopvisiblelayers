@@ -19,16 +19,7 @@
  ***************************************************************************/
  This script initializes the plugin, making it known to QGIS.
 """
-def name():
-    return "Loop Visible Layers"
-def description():
-    return "Loop Visible Layers"
-def version():
-    return "Version 0.3.2"
-def icon():
-    return "icon.png"
-def qgisMinimumVersion():
-    return "1.7"
+
 def classFactory(iface):
     # load LoopVisibleLayers class from file LoopVisibleLayers
     from loopvisiblelayers import LoopVisibleLayers

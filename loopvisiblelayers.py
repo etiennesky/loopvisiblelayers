@@ -50,7 +50,7 @@ class LoopVisibleLayers:
         self.loopWidget = LoopVisibleLayersWidget(self.iface)
         self.restoreTimerDelay()
         settings = QSettings()
-        if not settings.value('/Qgis/enable_render_caching').toBool():
+        if not settings.value('/Qgis/enable_render_caching', False, type=bool):
             self.loopWidget.setStatus( 'Enable render caching to improve performance' )
            
         # create and show the dock
@@ -86,18 +86,14 @@ class LoopVisibleLayers:
     def saveTimerDelay(self):
         timerDelay = self.loopWidget.getTimerDelay()
         settings = QSettings()
-        timerDelayStr = settings.value('/LoopVisibleLayers/delay')
-        if ( timerDelayStr.toFloat()[0] != timerDelay ):
-            settings.setValue( '/LoopVisibleLayers/delay', timerDelay )
+        timerDelay2 = settings.value('/LoopVisibleLayers/delay', 1.0, type=float)
+        if ( timerDelay2 != timerDelay ):
+            settings.setValue( '/LoopVisibleLayers/delay', timerDelay2 )
 
     def restoreTimerDelay(self):
         settings = QSettings()
-        timerDelayStr = settings.value('/LoopVisibleLayers/delay')
+        timerDelay = settings.value('/LoopVisibleLayers/delay', 1.0, type=float)
 
-        if timerDelayStr is None or timerDelayStr != '':
-            timerDelay = timerDelayStr.toFloat()[0]
-        else:
-            timerDelay = 1.0
         if timerDelay <= 0:
             timerDelay = 1.0
 

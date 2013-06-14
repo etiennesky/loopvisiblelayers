@@ -27,11 +27,6 @@ from qgis.gui import *
 
 from ui_loopvisiblelayerswidget import Ui_LoopVisibleLayersWidget as Ui_Widget
 
-try:
-    _fromUtf8 = QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 # create the widget
 class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
     def __init__(self, iface):
@@ -59,10 +54,10 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
         QObject.connect(self.timer, SIGNAL('timeout()'), self.actionNext)
         self.state = 'stop'
         self.iconStart = QIcon()
-        self.iconStart.addPixmap(QPixmap(_fromUtf8(':/plugins/loopvisiblelayers/icons/control_play.png')), QIcon.Normal, QIcon.Off)
+        self.iconStart.addPixmap(QPixmap(':/plugins/loopvisiblelayers/icons/control_play.png'), QIcon.Normal, QIcon.Off)
         self.iconPause = QIcon()
-        self.iconPause.addPixmap(QPixmap(_fromUtf8(':/plugins/loopvisiblelayers/icons/control_pause.png')), QIcon.Normal, QIcon.Off)
-        self.loopCursor = QtGui.QCursor(QtGui.QPixmap(_fromUtf8(':/plugins/loopvisiblelayers/icons/icon_small.png')))
+        self.iconPause.addPixmap(QPixmap(':/plugins/loopvisiblelayers/icons/control_pause.png'), QIcon.Normal, QIcon.Off)
+        self.loopCursor = QtGui.QCursor(QtGui.QPixmap(':/plugins/loopvisiblelayers/icons/icon_small.png'))
         #self.btnRefresh.setVisible( False )
         
         #self.legend = self.iface.mainWindow().legend() #not accessible...
@@ -109,10 +104,9 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
 
     # this does the real work    
     def checkGroupsChanged(self):
-        
-        newGroupNames = self.qstrlist2list( self.iface.legendInterface().groups() )
-        newGroupRels = self.qstrlist2list( self.iface.legendInterface().groupLayerRelationship() )
-        if ( newGroupNames == self.groupNames ) and ( newGroupRels == self.qstrlist2list(self.groupRels) ):
+        newGroupNames = self.iface.legendInterface().groups()
+        newGroupRels = self.iface.legendInterface().groupLayerRelationship()
+        if ( newGroupNames == self.groupNames ) and ( newGroupRels == self.groupRels ):
             return
         
         self.groupNames = newGroupNames
@@ -147,9 +141,9 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
     def actionStart(self):
         
         #make sure groups are updated
-        newGroupNames = self.qstrlist2list( self.iface.legendInterface().groups() )
-        newGroupRels = self.qstrlist2list( self.iface.legendInterface().groupLayerRelationship() )
-        if ( newGroupNames != self.groupNames ) or ( newGroupRels != self.qstrlist2list(self.groupRels) ):
+        newGroupNames = self.iface.legendInterface().groups()
+        newGroupRels = self.iface.legendInterface().groupLayerRelationship()
+        if ( newGroupNames != self.groupNames ) or ( newGroupRels != self.groupRels ):
             self.checkGroupsChanged()
             QtGui.QMessageBox.warning(self, 'Warning', 'Loop Visible Layers Plugin \n\nSelection has been updated, verify and start again')
             return
@@ -258,7 +252,7 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
 
         # get all layers and all groups as lists
         # slightly ineficient but I want to work with python lists exclusively here
-        self.allLayerIds = self.qstrlist2list( ifaceLayers )
+        self.allLayerIds = ifaceLayers
 
         # freeze the canvas
         self.freezeCanvas( True )
@@ -270,7 +264,7 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
             else:
                 layerVisible = False
             if layerId in self.allLayerIds:
-                layer = ifaceLayers[QString(layerId)]
+                layer = ifaceLayers[str(layerId)]
                 ifaceLegend.setLayerVisible( layer, layerVisible )
                 i = i + 1
             elif layerId in self.groupNames:
@@ -295,7 +289,7 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
                     if tmpLayerId in self.groupNames:
                         self.setGroupVisible(tmpLayerId,layerVisible)
                     else:
-                        layer = QgsMapLayerRegistry.instance().mapLayers()[QString(tmpLayerId)]
+                        layer = QgsMapLayerRegistry.instance().mapLayers()[str(tmpLayerId)]
                         self.iface.legendInterface().setLayerVisible( layer, layerVisible )
 
 
@@ -394,12 +388,6 @@ class LoopVisibleLayersWidget(QtGui.QWidget, Ui_Widget):
                 if self.iface.mapCanvas().isFrozen():
                     self.iface.mapCanvas().freeze( False )
                     self.iface.mapCanvas().refresh()
-
-    def qstrlist2list(self, qstrlist):
-        tmplist = list()
-        for key in qstrlist:
-            tmplist.append( str(key) )
-        return tmplist
 
     def enterEvent(self, event):
         # workaround, if signalsLegendIface=False, check groups changed
